@@ -1,8 +1,30 @@
 
-
+<form method="POST" action ="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 <label><b>Send Recovery Email</b></label>
 <input type="text" placeholder="Enter Email" name="email" required>
+<input type="submit" name="submit" value="Submit!" />
+ </form>
 
+<?php
+$email = "";
+if ($_SERVER["REQUEST_METHOD"]== "POST") {
+  if (empty($_POST["email"])) {
+   $emailErr = "Email is required";
+  } else {
+   $email = test_input($_POST["email"]);
+   // check if e-mail address is well-formed
+   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+     $emailErr = "Invalid email format";
+   }
+  }
+}
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
 
 <?php
 // Multiple recipients
@@ -18,7 +40,7 @@ $message = '
   <title>Classmates Connect Password Recovery</title>
 </head>
 <body>
-  <a href = >Click Here to Reset Your Password</a>
+  <a href="http://luna.mines.edu/zirwang/FinalProject/resetPassword.php">Click Here to Reset Your Password</a>
 </body>
 </html>
 ';
