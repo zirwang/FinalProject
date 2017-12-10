@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS CC;
+/*CREATE DATABASE IF NOT EXISTS CC;*/
 
 Drop table if exists Users cascade;
 Drop table if exists Schools cascade;
@@ -22,7 +22,7 @@ CREATE TABLE Users
   Profilepic varchar(255),
   Age int,
   School int,
-  Foreign key(School) references /*f17_zirwang.*/Schools(s_ID) ON UPDATE CASCADE ON DELETE RESTRICT
+  Foreign key(School) references f17_zirwang.Schools(s_ID) ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 
