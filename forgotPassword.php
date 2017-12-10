@@ -1,4 +1,3 @@
-
 <form method="POST" action ="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 <label><b>Send Recovery Email</b></label>
 <input type="text" placeholder="Enter Email" name="email" required>
@@ -40,7 +39,7 @@ $message = '
   <title>Classmates Connect Password Recovery</title>
 </head>
 <body>
-  <a href="http://luna.mines.edu/zirwang/FinalProject/resetPassword.php">Click Here to Reset Your Password</a>
+  <a href="http://localhost:8080/finalProject/resetPassword.php">Click Here to Reset Your Password</a>
 </body>
 </html>
 ';

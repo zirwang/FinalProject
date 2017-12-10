@@ -10,10 +10,7 @@
 <body>
 
 	<?php
-	$servername = "localhost";
-	$username = "zirwang";
-	$password = "QUAQKECA";
-	$dbname = "f17_zirwang";
+	include "databaseInfo.php";
 
 	$data = [];
 	// Create connection
@@ -25,7 +22,7 @@
 
 	session_start();
 	// define variables and set to empty values
-	$name =$password = "";
+	$name = $password = "";
 	$nameErr = $passwordErr ="";
 
 	$sql = "SELECT Name FROM Schools";
@@ -39,33 +36,36 @@
 	    }
 	}
 
-	if ($_SERVER["REQUEST_METHOD"]== "POST") {
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$valid = true;
 		if (empty($_POST["username"])) {
-		 $nameErr = "Username is required";
-		 $valid = false;
-	 } else {
-		 $name = test_input($_POST["name"]);
-	 }
-	  if (empty($_POST["password"])) {
-	    $passwordErr = "Password is required";
+			$nameErr = "Username is required";
 			$valid = false;
-	  } else {
-	    $password = test_input($_POST["password"]);
-	  }
-		if($valid){
-				$_SESSION['username'] = $_POST['username'];
-				$_SESSION['password'] = $_POST['password'];
-				header('Location:profile.php');
-		    exit();
-			}
-	}
-		function test_input($data) {
-		  $data = trim($data);
-		  $data = stripslashes($data);
-		  $data = htmlspecialchars($data);
-		  return $data;
+		} else {
+			$name = test_input($_POST["name"]);
 		}
+		if (empty($_POST["password"])) {
+			$passwordErr = "Password is required";
+			$valid = false;
+		} else {
+			$password = test_input($_POST["password"]);
+		}
+		if($valid){
+			$_SESSION['username'] = $_POST['username'];
+			$_SESSION['password'] = $_POST['password'];
+			date_default_timezone_set('America/Denver');
+			$_SESSION['loginTime'] = date('h:i:s', time());
+			header('Location:profile.php');
+		    exit();
+		}
+	}
+
+	function test_input($data) {
+	  $data = trim($data);
+	  $data = stripslashes($data);
+	  $data = htmlspecialchars($data);
+	  return $data;
+	}
 	?>
 
 <h2>Welcome to Classmates Connect!</h2>

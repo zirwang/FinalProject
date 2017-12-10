@@ -11,10 +11,7 @@
 <body>
 
 <?php
-$servername = "localhost";
-$username = "zirwang";
-$password = "QUAQKECA";
-$dbname = "f17_zirwang";
+include "databaseInfo.php";
 
 $data = [];
 // Create connection
@@ -148,7 +145,7 @@ function test_input($data) {
      </p>
      <p>
 			 <label for="password">Password: </label>
-			 <input type="text" name="password" size="20" maxlength="20" id="password"/>
+			 <input type="password" name="password" size="20" maxlength="20" id="password"/>
 			 <span class="error">* <?php echo $passwordErr;?></span>
      </p>
 		 <p>

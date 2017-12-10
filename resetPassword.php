@@ -1,3 +1,7 @@
+<?php
+include "checkLogInStatus.php";
+?>
+
 <form method="POST" action ="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 <label><b>Email:</b></label>
 <input type="text" placeholder="Enter Email" name="email" required>
@@ -33,10 +37,7 @@ function test_input($data) {
 }
 
 //updates database
-$servername = "localhost";
-$username = "zirwang";
-$password = "QUAQKECA";
-$dbname = "f17_zirwang";
+include "databaseInfo.php";
 
 $data = [];
 // Create connection
@@ -45,9 +46,6 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
-session_start();
-// define variables and set to empty values
 
 $sql = "Update Users SET Password = '$newPassword' WHERE Email = '$email'";
 $result = $conn->query($sql);

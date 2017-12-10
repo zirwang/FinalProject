@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,10 +17,7 @@
 
 session_start();
 
-$servername = "localhost";
-$username = "zirwang";
-$password = "QUAQKECA";
-$dbname = "f17_zirwang";
+include "databaseInfo.php";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -33,6 +32,8 @@ $username = $_SESSION['username'];
 $age = $_SESSION['age'];
 $password = $_SESSION['password'];
 $school = $_SESSION['school'];
+date_default_timezone_set('America/Denver');
+$_SESSION['loginTime'] = date('h:i:s', time());
 
 $sql = "SELECT 1 from Users WHERE FirstName = '$firstName' AND  LastName='$lastName' AND  Username='$username'";
 $result = $conn->query($sql);
