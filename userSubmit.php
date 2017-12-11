@@ -8,7 +8,6 @@
 <title> ClassMates Connect </title>
 	<meta charset="UTF-8">
 	<meta name="author" content="Ruby Wang">
-  <style>.error {color: #FF0000;}</style>
 </head>
 
 <body>

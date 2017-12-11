@@ -90,12 +90,8 @@
 
   <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="cancelbtn">Cancel</button>
-
     <span class="psw">Forgot <a href="forgotPassword.php">password?</a></span>
   </div>
-
-
-
 
 </body>
 </html>

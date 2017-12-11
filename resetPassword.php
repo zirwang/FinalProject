@@ -1,7 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+<title> Reset Password </title>
+	<meta charset="UTF-8">
+	<style>.error {color: #FF0000;}</style>
+	<link rel="stylesheet" type="text/css" href="login.css">
+</head>
+
+<body>
+
 <?php
 include "checkLogInStatus.php";
 ?>
-
+<h1>Reset Password</h1>
 <form method="POST" action ="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 <label><b>Email:</b></label>
 <input type="text" placeholder="Enter Email" name="email" required>
@@ -51,3 +65,5 @@ $sql = "Update Users SET Password = '$newPassword' WHERE Email = '$email'";
 $result = $conn->query($sql);
 echo $newPassword;
 ?>
+</body>
+</html>

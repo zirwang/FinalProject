@@ -1,8 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+<title>Password Recovery</title>
+	<meta charset="UTF-8">
+	<style>.error {color: #FF0000;}</style>
+	<link rel="stylesheet" type="text/css" href="login.css">
+</head>
+
+<body>
+<h1>Forgot Password </h1>
 <form method="POST" action ="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 <label><b>Send Recovery Email</b></label>
 <input type="text" placeholder="Enter Email" name="email" required>
 <input type="submit" name="submit" value="Submit!" />
- </form>
+</form>
 
 <?php
 $email = "";
@@ -26,8 +40,7 @@ function test_input($data) {
 ?>
 
 <?php
-// Multiple recipients
-$to = $email; // note the comma
+$to = $email;
 
 // Subject
 $subject = 'Classmates Connect Password Reset';
@@ -52,3 +65,6 @@ $headers[] = 'Content-type: text/html; charset=iso-8859-1';
 // Mail it
 mail($to, $subject, $message, implode("\r\n", $headers));
 ?>
+
+</body>
+</html>

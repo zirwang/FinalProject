@@ -1,3 +1,7 @@
+h1{
+  width: 100%
+  border: 1px solid #ccc;
+}
 form {
     border: 3px solid #f1f1f1;
 }

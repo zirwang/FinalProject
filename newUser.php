@@ -5,7 +5,8 @@
 <head>
 <title> Sign Up for Classmates Connect </title>
 	<meta charset="UTF-8">
-	<meta name="author" content="Ruby Wang">
+	<style>.error {color: #FF0000;}</style>
+	<link rel="stylesheet" type="text/css" href="login.css">
 </head>
 
 <body>
@@ -111,7 +112,7 @@ function test_input($data) {
   return $data;
 }
 ?>
-
+	<h1>Create Your Profile</h1>
   <form method="POST" action ="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
     <p><span class="error">* required field</span></p>
 		<fieldset>
@@ -140,13 +141,15 @@ function test_input($data) {
      </p>
      <p>
 			 <label for="username">Username: </label>
-			 <input type="text" name="username" size="20" maxlength="20" id="name"/>
 			 <span class="error">* <?php echo $nameErr;?></span>
+			 <input type="text" name="username" size="20" maxlength="20" id="name"/>
+
      </p>
      <p>
 			 <label for="password">Password: </label>
-			 <input type="password" name="password" size="20" maxlength="20" id="password"/>
 			 <span class="error">* <?php echo $passwordErr;?></span>
+			 <input type="password" name="password" size="20" maxlength="20" id="password"/>
+
      </p>
 		 <p>
 
@@ -163,8 +166,8 @@ function test_input($data) {
 
 	 </fieldset>
      <p>
-        <input type="submit" name="submit" value="Submit!" />
-        <input type="reset" name="reset" value="Reset" />
+          <button type="submit">Join!</button>
+					<button type="button" class="cancelbtn">Reset</button>
      </p>
    </form>
 
