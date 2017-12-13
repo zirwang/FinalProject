@@ -4,6 +4,7 @@
 <head>
 	<title> Classmates Connect</title>
 	<meta charset="UTF-8">
+	<style>.error {color: #FF0000;}</style>
   <link rel="stylesheet" type="text/css" href="login.css">
 </head>
 
@@ -24,17 +25,7 @@
 	// define variables and set to empty values
 	$name = $password = "";
 	$nameErr = $passwordErr ="";
-
-	$sql = "SELECT Name FROM Schools";
-	$result = $conn->query($sql);
-
-	if ($result->num_rows > 0) {
-	    // output data of each row
-	    while($row = $result->fetch_assoc()) {
-	        $data[] = $row["Name"];
-
-	    }
-	}
+	$invaliderr = false;
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$valid = true;
@@ -42,12 +33,32 @@
 			$nameErr = "Username is required";
 			$valid = false;
 		} else {
-			$name = test_input($_POST["name"]);
+			$name = test_input($_POST["username"]);
+			$sql = "SELECT Password FROM Users Where Username = '$name'";
+			$result = $conn->query($sql);
+			if ($result->num_rows > 0) {
+			    // output data of each row
+			    while($row = $result->fetch_assoc()) {
+			        $data[] = $row["Password"];
+			    }
+					$password = $data[0];
+			}
+			else{
+				echo "<span class='error'>No account is associated with this username!</span>";
+				$invaliderr =true;
+			}
 		}
 		if (empty($_POST["password"])) {
 			$passwordErr = "Password is required";
 			$valid = false;
-		} else {
+		}
+		else if($password != $_POST["password"]){
+			if($invaliderr == false){
+				echo "<span class='error'>Incorrect Username or Password!</span>";
+			}
+			$valid = false;
+		}
+		else {
 			$password = test_input($_POST["password"]);
 		}
 		if($valid){
