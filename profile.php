@@ -10,6 +10,9 @@
 </head>
 
 <?php
+include "checkLogInStatus.php";
+echo $_SESSION["loginTime"];
+
 include "databaseInfo.php";
 
 // Create connection
@@ -18,7 +21,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-session_start();
+
 
 $username = $_SESSION['username'];
 
@@ -52,12 +55,5 @@ else{
 <h3> Your Connections:</h3>
 
 
-
-<?php
-include "checkLogInStatus.php";
-
-echo $_SESSION["loginTime"];
-
-?>
 </body>
 </html>
