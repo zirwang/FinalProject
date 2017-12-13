@@ -34,7 +34,7 @@ $username = $_SESSION['username'];
 $age = $_SESSION['age'];
 $password = $_SESSION['password'];
 $school = $_SESSION['school'];
-$about = $_SESSION['profile'];
+$about = htmlspecialchars($_SESSION['profile']);
 
 $sql = "SELECT 1 from Users WHERE Username='$username'";
 $result = $conn->query($sql);

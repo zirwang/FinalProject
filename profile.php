@@ -11,7 +11,6 @@
 
 <?php
 include "checkLogInStatus.php";
-echo $_SESSION["loginTime"];
 
 include "databaseInfo.php";
 
