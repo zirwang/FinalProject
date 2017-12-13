@@ -13,8 +13,11 @@
 <body>
 
 <?php
-
 session_start();
+if(!array_key_exists("username", $_SESSION)) {
+	header('Location: index.php');
+	die();
+}
 
 include "databaseInfo.php";
 
@@ -33,7 +36,7 @@ $password = $_SESSION['password'];
 $school = $_SESSION['school'];
 $about = $_SESSION['profile'];
 
-$sql = "SELECT 1 from Users WHERE FirstName = '$firstName' AND  LastName='$lastName' AND  Username='$username'";
+$sql = "SELECT 1 from Users WHERE Username='$username'";
 $result = $conn->query($sql);
 if ($result->num_rows == 0) {
     echo "<h3> Thanks for joining Classmates Connect! </h3>";

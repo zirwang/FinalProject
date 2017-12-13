@@ -32,6 +32,18 @@ if ($result->num_rows > 0) {
     }
 }
 
+function usernameInDB($username) {
+	global $conn;
+	$sql = $conn->prepare("SELECT 1 from Users WHERE Username=?");
+	$sql->bind_param("s", $username);
+	$sql->execute();
+	$result = $sql->get_result();
+	if ($result->num_rows > 0) {
+		return true;
+	}
+	return false;
+}
+
 session_start();
 // define variables and set to empty values
 $first = $last = $email = $name =$age= $password =$school =$about= "";
@@ -76,6 +88,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty($_POST["username"])) {
     $nameErr = "Username is required";
 		$valid = false;
+  } else if (usernameInDB($_POST["username"])) {
+  	$nameErr = "Username already exists";
+  	$valid = false;
   } else {
 		$name = test_input($_POST["username"]);
   }
@@ -102,8 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$_SESSION['school'] = $_POST['school'];
 		$_SESSION['age'] = $_POST['age'];
 		$_SESSION['profile'] = $_POST['profile'];
-		//header('Location:userSubmit.php');
-
+		
 		// send confirmation email
 		$to = $_SESSION['email'];
 
@@ -127,14 +141,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
 
-		// Mail it if a valid email has been set
-		if ($email != "") {
-		  $successful = mail($to, $subject, $message, implode("\r\n", $headers));
-		  if($successful) {
-		    echo "<p>Account confirmation sent, please check your email.</p>";
-		  } else {
-		    echo "<p>Error sending email, please try again</p>";
-		  }
+		// Mail it
+	  	$successful = mail($to, $subject, $message, implode("\r\n", $headers));
+		if($successful) {
+		  echo "<p>Account confirmation sent, please check your email.</p>";
+		} else {
+		  echo "<p>Error sending email, please try again</p>";
 		}
 	    exit();
 }

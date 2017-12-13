@@ -64,8 +64,7 @@
 		if($valid){
 			$_SESSION['username'] = $_POST['username'];
 			$_SESSION['password'] = $_POST['password'];
-			date_default_timezone_set('America/Denver');
-			$_SESSION['loginTime'] = date('h:i:s', time());
+			$_SESSION['loginTime'] = time();
 			header('Location:profile.php');
 		    exit();
 		}
