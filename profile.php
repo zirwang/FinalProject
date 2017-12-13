@@ -8,10 +8,49 @@
 	<style>.error {color: #FF0000;}</style>
 	<link rel="stylesheet" type="text/css" href="login.css">
 </head>
+
+<?php
+include "databaseInfo.php";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+session_start();
+
+$username = $_SESSION['username'];
+
+$sql = "SELECT FirstName, LastName, Description FROM Users WHERE Username = '$username'";
+$result = $conn->query($sql);
+
+$first = $last = $about = [];
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        $first[]= $row["FirstName"];
+        $last[] = $row["LastName"];
+        $about[] = $row["Description"];
+    }
+}
+else{
+  echo "0 results";
+}
+
+?>
+
 <body>
-<h1> "Your Profile" </h1>
+<?php echo "<h1> Welcome $first[0]! </h1>"; ?>
+
 <img src="img/defaultprofile.png" alt="ProfilePic" style="width:304px;height:228px;">
 <br/>
+<h3> Your Profile:</h3>
+
+<?php echo "<p> $about[0] </p>"; ?>
+
+<h3> Your Connections:</h3>
+
 
 
 <?php

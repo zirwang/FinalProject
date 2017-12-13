@@ -31,6 +31,8 @@ $username = $_SESSION['username'];
 $age = $_SESSION['age'];
 $password = $_SESSION['password'];
 $school = $_SESSION['school'];
+$about = $_SESSION['profile'];
+
 date_default_timezone_set('America/Denver');
 $_SESSION['loginTime'] = date('h:i:s', time());
 
@@ -38,7 +40,8 @@ $sql = "SELECT 1 from Users WHERE FirstName = '$firstName' AND  LastName='$lastN
 $result = $conn->query($sql);
 if ($result->num_rows == 0) {
     echo "<h3> Thanks for joining Classmates Connect! </h3>";
-		$sql = "INSERT INTO Users(FirstName, LastName, Username, Email, Password, Age, School) VALUES ('$firstName','$lastName','$username','$email','$password','$age',(SELECT s_ID FROM Schools Where Name = '$school'))";
+		echo "<a href =index.php> Click Here to Log In </a>";
+		$sql = "INSERT INTO Users(FirstName, LastName, Username, Email, Password, Age, School, Description) VALUES ('$firstName','$lastName','$username','$email','$password','$age',(SELECT s_ID FROM Schools Where Name = '$school'), '$about')";
 		$result = $conn->query($sql);
 } else {
     echo "<h3> This account already exists! </h3>";

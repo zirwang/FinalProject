@@ -20,6 +20,7 @@ CREATE TABLE Users
   Email varchar(255),
   Password varchar(255),
   Profilepic varchar(255),
+  Description text,
   Age int,
   School int,
   Foreign key(School) references f17_zirwang.Schools(s_ID) ON UPDATE CASCADE ON DELETE RESTRICT

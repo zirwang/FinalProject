@@ -34,7 +34,7 @@ if ($result->num_rows > 0) {
 
 session_start();
 // define variables and set to empty values
-$first = $last = $email = $name =$age= $password =$school = "";
+$first = $last = $email = $name =$age= $password =$school =$about= "";
 $firstErr = $lastErr = $emailErr = $nameErr = $passwordErr = $schoolErr ="";
 
 if ($_SERVER["REQUEST_METHOD"]== "POST") {
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST") {
     $donation = test_input($_POST["school"]);
   }
   $age = test_input($_POST["age"]);
-
+	$about = test_input($_POST["profile"]);
 	if($valid){
       $_SESSION['email'] = $_POST['email'];
 			$_SESSION['first'] = $_POST['first'];
@@ -101,6 +101,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST") {
 			$_SESSION['password'] = $_POST['password'];
 			$_SESSION['school'] = $_POST['school'];
 			$_SESSION['age'] = $_POST['age'];
+			$_SESSION['profile'] = $_POST['profile'];
 			header('Location:userSubmit.php');
 	    exit();
 }
@@ -162,6 +163,10 @@ function test_input($data) {
           <option value="<?php echo $value ?>" > <?php echo $value;?></option>
       <?php } ?>
         </select>
+     </p>
+		 <p>
+      <label for="profile">Write a Short Profile:</label>
+      <input type="text" name="profile" size="100" maxlength="200" id ="profile"/>
      </p>
 
 	 </fieldset>
