@@ -94,15 +94,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $age = test_input($_POST["age"]);
 	$about = test_input($_POST["profile"]);
 	if($valid){
-      $_SESSION['email'] = $_POST['email'];
-			$_SESSION['first'] = $_POST['first'];
-			$_SESSION['last'] = $_POST['last'];
-			$_SESSION['username'] = $_POST['username'];
-			$_SESSION['password'] = $_POST['password'];
-			$_SESSION['school'] = $_POST['school'];
-			$_SESSION['age'] = $_POST['age'];
-			$_SESSION['profile'] = $_POST['profile'];
-			header('Location:userSubmit.php');
+    	$_SESSION['email'] = $_POST['email'];
+		$_SESSION['first'] = $_POST['first'];
+		$_SESSION['last'] = $_POST['last'];
+		$_SESSION['username'] = $_POST['username'];
+		$_SESSION['password'] = $_POST['password'];
+		$_SESSION['school'] = $_POST['school'];
+		$_SESSION['age'] = $_POST['age'];
+		$_SESSION['profile'] = $_POST['profile'];
+		//header('Location:userSubmit.php');
+
+		// send confirmation email
+		$to = $_SESSION['email'];
+
+		// Subject
+		$subject = 'Classmates Connect Account Confirmation';
+
+		// Message
+		$message = '
+		<html>
+		<head>
+		  <title>Classmates Connect Account Confirmation</title>
+		</head>
+		<body>
+		  <a href="http://' . 'localhost:8080/finalProject/' . /*luna.mines.edu/zirwang/FinalProject/*/'userSubmit.php">Click Here to Reset Your Password</a>
+		</body>
+		</html>
+		';
+
+		// To send HTML mail, the Content-type header must be set
+		$headers[] = 'MIME-Version: 1.0';
+		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+
+
+		// Mail it if a valid email has been set
+		if ($email != "") {
+		  $successful = mail($to, $subject, $message, implode("\r\n", $headers));
+		  if($successful) {
+		    echo "<p>Account confirmation sent, please check your email.</p>";
+		  } else {
+		    echo "<p>Error sending email, please try again</p>";
+		  }
+		}
 	    exit();
 }
 }
