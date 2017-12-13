@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<h1>Forgot Password </h1>
+<h1>Forgot Passwod </h1>
 <form method="POST" action ="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 <label><b>Send Recovery Email</b></label>
 <input type="text" placeholder="Enter Email" name="email" required>
