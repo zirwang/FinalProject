@@ -37,7 +37,7 @@ session_start();
 $first = $last = $email = $name =$age= $password =$school =$about= "";
 $firstErr = $lastErr = $emailErr = $nameErr = $passwordErr = $schoolErr ="";
 
-if ($_SERVER["REQUEST_METHOD"]== "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$valid = true;
 	if (empty($_POST["first"])) {
 	 $firstErr = "First name is required";

@@ -33,9 +33,6 @@ $password = $_SESSION['password'];
 $school = $_SESSION['school'];
 $about = $_SESSION['profile'];
 
-date_default_timezone_set('America/Denver');
-$_SESSION['loginTime'] = date('h:i:s', time());
-
 $sql = "SELECT 1 from Users WHERE FirstName = '$firstName' AND  LastName='$lastName' AND  Username='$username'";
 $result = $conn->query($sql);
 if ($result->num_rows == 0) {

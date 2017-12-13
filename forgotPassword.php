@@ -52,7 +52,7 @@ $message = '
   <title>Classmates Connect Password Recovery</title>
 </head>
 <body>
-  <a href="http://' . /*localhost:8080/finalProject/*/'luna.mines.edu/zirwang/FinalProject/resetPassword.php">Click Here to Reset Your Password</a>
+  <a href="http://' . 'localhost:8080/finalProject/' . /*luna.mines.edu/zirwang/FinalProject/*/'resetPassword.php">Click Here to Reset Your Password</a>
 </body>
 </html>
 ';
@@ -62,8 +62,15 @@ $headers[] = 'MIME-Version: 1.0';
 $headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
 
-// Mail it
-mail($to, $subject, $message, implode("\r\n", $headers));
+// Mail it if a valid email has been set
+if ($email != "") {
+  $successful = mail($to, $subject, $message, implode("\r\n", $headers));
+  if($successful) {
+    echo "<p>Recovery email sent!</p>";
+  } else {
+    echo "<p>Error sending email, please try again</p>";
+  }
+}
 ?>
 
 </body>
