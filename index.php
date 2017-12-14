@@ -78,7 +78,7 @@
 	}
 	?>
 
-<h2>Welcome to Classmates Connect!</h2>
+<h1>Welcome to Classmates Connect!</h1>
 
 <form method = "POST" action ="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
   <div class="imgcontainer">

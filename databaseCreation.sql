@@ -2,6 +2,7 @@
 
 Drop table if exists Users cascade;
 Drop table if exists Schools cascade;
+Drop table if exists ConnectionsXref cascade;
 
 CREATE TABLE Schools
 (
@@ -26,11 +27,24 @@ CREATE TABLE Users
   Foreign key(School) references f17_zirwang.Schools(s_ID) ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
+CREATE TABLE ConnectionsXref
+(
+  c_ID int NOT NULL Primary Key AUTO_INCREMENT,
+  PrimaryUser int,
+  Connections int,
+  Foreign key(PrimaryUser) references f17_zirwang.Users(u_ID) ON UPDATE CASCADE ON DELETE RESTRICT,
+  Foreign key(Connections) references f17_zirwang.Users(u_ID) ON UPDATE CASCADE ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
 
 INSERT INTO Schools(Name, City, State)
 VALUES ('Colorado School of Mines', 'Golden', 'CO');
 INSERT INTO Schools(Name,City, State)
 VALUES ('University of Colorado', 'Boulder', 'CO');
+INSERT INTO Schools(Name,City, State)
+VALUES ('Colorado State University', 'Fort Collins', 'CO');
+INSERT INTO Schools(Name,City, State)
+VALUES ('Denver University', 'Denver', 'CO');
 
 INSERT INTO Users(LastName, FirstName, Username, Email, Password, Age, School)
 VALUES ('Wang', 'Ruby', 'zwang', 'zwang@mines.edu', 'Password1234', 21, 1);

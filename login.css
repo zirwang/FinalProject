@@ -1,7 +1,17 @@
+body {
+	  background: linear-gradient(to bottom right, #A9CCE3, #2471A3);
+  }
+
 h1{
   width: 100%
-  border: 1px solid #ccc;
+  border: 2px solid;
+  text-align: center;
 }
+h3{
+  width: 100%
+  border: 1px solid;
+}
+
 form {
     border: 3px solid #f1f1f1;
 }
@@ -64,4 +74,3 @@ span.psw {
        width: 100%;
     }
 }
-</style>
