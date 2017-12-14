@@ -45,6 +45,8 @@ else{
 <body>
 <?php echo "<h1> Welcome $first[0]! </h1>"; ?>
 
+<h2><a href="browseProfiles.php">Browse Profiles</a></h2>
+	
 <img src="img/defaultprofile.png" alt="ProfilePic" style="width:304px;height:228px;">
 <br/>
 <h3> Your Profile:</h3>
