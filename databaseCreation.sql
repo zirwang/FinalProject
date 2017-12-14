@@ -1,8 +1,8 @@
 CREATE DATABASE IF NOT EXISTS CC;
 
+Drop table if exists ConnectionsXref cascade;
 Drop table if exists Users cascade;
 Drop table if exists Schools cascade;
-Drop table if exists ConnectionsXref cascade;
 
 CREATE TABLE Schools
 (
