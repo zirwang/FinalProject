@@ -56,7 +56,7 @@ $userID = $temp[0];
 
 <h3> Your Connections:</h3>
 <?php
-$sql = "SELECT Users.FirstName, Users.LastName, Users.UserName FROM Users, ConnectionsXref  WHERE Users.u_id = (SELECT Connections FROM ConnectionsXref WHERE PrimaryUser = $userID)";
+$sql = "SELECT Users.FirstName, Users.LastName, Users.UserName FROM Users WHERE Users.u_id IN (SELECT Connections FROM ConnectionsXref WHERE PrimaryUser = $userID)";
 $result = $conn->query($sql);
 
 $first = $last = $about = [];
