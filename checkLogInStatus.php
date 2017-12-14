@@ -5,10 +5,11 @@ if(!array_key_exists("loginTime", $_SESSION)) {
 	die();
 }
 $elapsedTime = time() - $_SESSION["loginTime"];
-echo "Elapsed time: " . $elapsedTime . "<br>";
-if ($elapsedTime > 120) {
-	echo "Sign user out";
+if ($elapsedTime > 60) {
+	unset($_SESSION["loginTime"]);
+	header('Location: index.php');
+	die();
 } else {
-	echo "User does not need to be signed out";
+	$_SESSION["loginTime"] = time();
 }
 ?>
