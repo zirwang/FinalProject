@@ -55,7 +55,7 @@ foreach ($data as $value) { ?>
 	<li><h2><?php echo $value; ?></h2>
 	<ul id="users">
 	<?php // obtaining all of the profiles for the given school
-	$users = $conn->query("SELECT * FROM Users, Schools WHERE School = s_id AND s_id IN (SELECT s_id FROM Schools WHERE Name = '". $value ."')");
+	$users = $conn->query("SELECT * FROM Users, Schools WHERE School = s_id AND s_id IN (SELECT s_id FROM Schools WHERE Name = '". $value ."') AND Username <> '" . $_SESSION["username"] . "'");
 	foreach ($users as $user) { ?>
 		<li><h3>User: <?php echo $user["FirstName"] . " " . $user["LastName"]; ?></h3></li>
 		<img src="img/defaultprofile.png" alt="ProfilePic" style="width:152px;height:114px;">
@@ -72,9 +72,11 @@ foreach ($data as $value) { ?>
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	echo "Shit happened";
   $name = test_input($_POST["$temp"]);
 	$sql = "INSERT INTO ConnectionsXref(PrimaryUser, Connections) Values ((Select u_ID FROM Users WHERE Username = '$currentUser'), (Select u_ID FROM Users WHERE Username = '$name'))";
 	$result = $conn->query($sql);
+	echo "Shit happened";
 }
 ?>
 

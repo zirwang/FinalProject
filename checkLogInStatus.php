@@ -5,7 +5,7 @@ if(!array_key_exists("loginTime", $_SESSION)) {
 	die();
 }
 $elapsedTime = time() - $_SESSION["loginTime"];
-if ($elapsedTime > 60) {
+if ($elapsedTime > 180) {
 	unset($_SESSION["loginTime"]);
 	header('Location: index.php');
 	die();
