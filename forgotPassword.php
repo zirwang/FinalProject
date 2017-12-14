@@ -52,7 +52,7 @@ $message = '
   <title>Classmates Connect Password Recovery</title>
 </head>
 <body>
-  <a href="http://' . /*'localhost:8080/finalProject/' . */'luna.mines.edu/zirwang/FinalProject/' . 'resetPassword.php">Click Here to Reset Your Password</a>
+  <a href="http://' . 'localhost:8080/finalProject/' . /*'luna.mines.edu/zirwang/FinalProject/' .*/ 'resetPassword.php">Click Here to Reset Your Password</a>
 </body>
 </html>
 ';

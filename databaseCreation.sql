@@ -1,4 +1,4 @@
-/*CREATE DATABASE IF NOT EXISTS CC;*/
+CREATE DATABASE IF NOT EXISTS CC;
 
 Drop table if exists Users cascade;
 Drop table if exists Schools cascade;
@@ -24,7 +24,7 @@ CREATE TABLE Users
   Description text,
   Age int,
   School int,
-  Foreign key(School) references f17_zirwang.Schools(s_ID) ON UPDATE CASCADE ON DELETE RESTRICT
+  Foreign key(School) references /*f17_zirwang.*/Schools(s_ID) ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 CREATE TABLE ConnectionsXref
@@ -32,8 +32,8 @@ CREATE TABLE ConnectionsXref
   c_ID int NOT NULL Primary Key AUTO_INCREMENT,
   PrimaryUser int,
   Connections int,
-  Foreign key(PrimaryUser) references f17_zirwang.Users(u_ID) ON UPDATE CASCADE ON DELETE RESTRICT,
-  Foreign key(Connections) references f17_zirwang.Users(u_ID) ON UPDATE CASCADE ON DELETE RESTRICT
+  Foreign key(PrimaryUser) references /*f17_zirwang.*/Users(u_ID) ON UPDATE CASCADE ON DELETE RESTRICT,
+  Foreign key(Connections) references /*f17_zirwang.*/Users(u_ID) ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 

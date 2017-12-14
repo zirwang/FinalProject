@@ -11,7 +11,7 @@
 <body>
 
 <?php
-session_start();
+include "checkLogInStatus.php";
 $currentUser = $_SESSION['username'];
 include "databaseInfo.php";
 

@@ -41,8 +41,9 @@ $result = $conn->query($sql);
 if ($result->num_rows == 0) {
     echo "<h3> Thanks for joining Classmates Connect! </h3>";
 		echo "<a href=index.php> Click Here to Log In </a>";
-		$sql = "INSERT INTO Users(FirstName, LastName, Username, Email, Password, Age, School, Description) VALUES ('$firstName','$lastName','$username','$email','$password','$age',(SELECT s_ID FROM Schools Where Name = '$school'), '$about')";
-		$result = $conn->query($sql);
+		$sql = $conn->prepare("INSERT INTO Users(FirstName, LastName, Username, Email, Password, Age, School, Description) VALUES (?,?,?,?,?,?,(SELECT s_ID FROM Schools Where Name = ?), ?)");
+		$sql->bind_param("sssssiss", $firstName, $lastName, $username, $email, $password, $age, $school, $about);
+		$sql->execute();
 } else {
     echo "<h3> This account already exists! </h3>";
 }

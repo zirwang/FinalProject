@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		  <title>Classmates Connect Account Confirmation</title>
 		</head>
 		<body>
-		  <a href="http://' . /*'localhost:8080/finalProject/' . */'luna.mines.edu/zirwang/FinalProject/' . 'userSubmit.php">Click Here to Confirm Your Account</a>
+		  <a href="http://' . 'localhost:8080/finalProject/' . /*'luna.mines.edu/zirwang/FinalProject/' .*/ 'userSubmit.php">Click Here to Confirm Your Account</a>
 		</body>
 		</html>
 		';
